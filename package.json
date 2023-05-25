@@ -1,0 +1,11 @@
+{
+  "name": "poc-webapp",
+  "version": "1.0.0",
+  "description": "A poc webapp in the structure of UA-Lib webapps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dane Tsao",
+  "license": "ISC"
+}
