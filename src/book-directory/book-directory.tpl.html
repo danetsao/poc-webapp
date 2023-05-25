@@ -1,11 +1,12 @@
 <div ng-controller="BookDirController">
     <p>{{directive_message}}</p>
-    <p>List of avaliable books:</p>
-    <div ng-repeat="book in books_json">
+    <h2>List of avaliable books:</h2>
+    <div ng-repeat="post in list_of_posts">
         <div>
-            <p>Title: <b>{{book['title']}}</b></p>
-            <p>Author: {{book['author']}}</p>
-            <p>ISBN: {{book['isbn']}}</p>
+            <p>Title: <a href='{{post["post_url"]}}'><b>{{post['post_title']}}</b></a></p>
+            <p>Date: {{post['post_date']}}</p>
+            <p>Description: {{post['post_content']}}</p>
         </div>
     </div>
 </div>
+
