@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>POC Webapp</title>
+    <link rel="stylesheet" href="book-directory/book-directory.css">
+    <link rel="stylesheet" href="main.css">
     <!-- Load the AngularJS library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
@@ -13,22 +15,23 @@
     <script src="book-profile/book-profile.js"></script>
 </head>
 <body>
-    <h1>Book Search</h1>
-    <button onclick="window.location.href = 'book-profile/book-profile.html';">Book Directory</button>
 
-    <book></book>
+    <h1>Book Search</h1>
 
     <div ng-controller="BookDirController">
         <h2>{{title}}</h2>
+        <p>{{directive_message}}</p>
     </div>
-
-    <card></card>
 
     <div ng-controller="BookCardController">
         <h2>{{title}}</h2>
+        <p>{{directive_message}}</p>
     </div>
+
+    <book></book>
 
 </body>
 <footer>
     <p><a href="https://github.com/danetsao">Dane Tsao</a> | 2023</p>
+</footer>
 </html>

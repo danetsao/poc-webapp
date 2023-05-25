@@ -1,6 +1,5 @@
 // Get the module
-const URL =
-  "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+const URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
 angular
   .module("app")
@@ -19,7 +18,7 @@ angular
     "$http",
     function ($scope, $http) {
       $scope.title = "Book Directory";
-      $scope.directive_message = "Here we are in book-directory directive";
+      $scope.directive_message = "Here we are in book-directory controller";
 
       // Define statis list of books in json format
       $scope.list_of_posts = [];
@@ -35,7 +34,7 @@ angular
         });
     },
   ]);
-  
+
 
 // Format the list of posts from the WP API
 function format_data(list_of_posts) {

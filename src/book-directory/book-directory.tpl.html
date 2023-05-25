@@ -1,12 +1,14 @@
-<div ng-controller="BookDirController">
-    <p>{{directive_message}}</p>
-    <h2>List of avaliable books:</h2>
-    <div ng-repeat="post in list_of_posts">
-        <div>
-            <p>Title: <a href='{{post["post_url"]}}'><b>{{post['post_title']}}</b></a></p>
-            <p>Date: {{post['post_date']}}</p>
-            <p>Description: {{post['post_content']}}</p>
-        </div>
-    </div>
-</div>
 
+<div ng-controller="BookDirController" class="book-directory">
+    <h2>List of available books:</h2>
+    <div ng-repeat="post in list_of_posts">
+    <a href='{{post["post_url"]}}'>
+      <div class="book-item">
+        <p><b>{{post['post_title']}}</b></p>
+        <p class="date">{{post['post_date']}}</p>
+        <p>{{post['post_content']}}</p>
+      </div>
+    </a>
+    </div>
+  </div>
+  

@@ -14,5 +14,5 @@ angular.module('app')
     // Add controller for the book card
     .controller('BookCardController', ['$scope', function($scope) {
         $scope.title = 'Book Card';
-        $scope.directive_message = "Here we are in book-card-directive";
+        $scope.directive_message = "Here we are in book-card controller";
     }]);
