@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="poc-webapp">
+<html ng-app="app">
 <head>
     <meta charset="UTF-8">
     <title>POC Webapp</title>
@@ -8,10 +8,22 @@
 
     <!-- Load your custom script -->
     <script src="app.js"></script>
+    <script src="book-directory/book-directory.js"></script>
+    <script src="book-card/book-card.js"></script>
 </head>
 <body>
+    <h1>Book Search</h1>
+
+    <book></book>
+
     <div ng-controller="BookDirController">
-        <h1>{{title}}</h1>
+        <h2>{{title}}</h2>
+    </div>
+
+    <card></card>
+
+    <div ng-controller="BookCardController">
+        <h2>{{title}}</h2>
     </div>
 </body>
 </html>
