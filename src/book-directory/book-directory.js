@@ -1,8 +1,7 @@
-// Book directory controller
-// Define require
-
+// Get the module
 angular.module('app')
-
+    
+    // Add directive to render list of all books
     .directive('book', function() {
         console.log('book-directory directive');
         return {
@@ -11,10 +10,12 @@ angular.module('app')
         };
     })
 
+    // Add controller for the book directory
     .controller('BookDirController', ['$scope', function($scope) {
         $scope.title = 'Book Directory';
         $scope.directive_message = "Here we are in book-directory directive";
-
+        
+        // Define statis list of books in json format
         $scope.books_json = [
             {
               "title": "The Catcher in the Rye",
