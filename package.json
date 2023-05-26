@@ -10,8 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "grunt": "^1.6.1",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-watch": "^1.1.0",
     "load-grunt-tasks": "^5.1.0",
     "serve-static": "^1.15.0",
     "time-grunt": "^2.0.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-connect": "^3.0.0"
   }
 }

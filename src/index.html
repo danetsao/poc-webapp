@@ -14,9 +14,18 @@
     <script src="book-card/book-card.js"></script>
     <script src="book-profile/book-profile.js"></script>
 </head>
-<body>
 
+<header>
     <h1>POC Webapp</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="book-directory/book-directory.html">Book Directory</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
 
     <div ng-controller="BookDirController">
         <h2>{{title}}</h2>

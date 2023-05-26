@@ -7,4 +7,4 @@ angular.module('app')
         templateUrl: 'book-profile/book-profile.tpl.html'
         };
     }
-    )
+);
