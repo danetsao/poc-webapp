@@ -6,8 +6,17 @@ See [onesearch_ui](https://github.com/ualibweb/oneSearch_ui), [staffdir_ui](http
 
 
 ## Features
-## Installation
+In this app we are using andular 1.3.0 to build a custom web page that using different featuees of angular+wordpress api.
 
+- Custom rest api
+    - With our [poc-plugin](https://github.com/danetsao/poc-plugin) we have created a custom post type called poc.
+    - We register a custom rest api that allows us to get all the poc posts and get a single poc post by id.
+- Directives
+
+- Controllers
+
+## Installation
+Will not work locally unless you have wordpress running locally with the [poc-plugin](https://github.com/danetsao/poc-plugin) installed that supports this custom post type.
 ```
 git clone https://github.com/danetsao/pos-webapp.git
 ```
