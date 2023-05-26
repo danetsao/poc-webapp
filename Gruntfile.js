@@ -18,7 +18,9 @@ module.exports = function(grunt) {
             options: {
                 port: 9001,
                 base: 'src',
-                keepalive: true
+                keepalive: true,
+                open: true,
+                livereload: true,
                 }
             }
         }
@@ -31,8 +33,11 @@ module.exports = function(grunt) {
 
     // Register a build task to run on 'grunt build', will add more to minify and uglify etc
     grunt.registerTask('build', ['jshint']);
-    
-    // Register a default task to run on 'grunt'
-    grunt.registerTask('default', ['connect', 'jshint']);
+
+    // Register a dev task to run on 'grunt dev'
+    grunt.registerTask('dev', ['connect', 'jshint']);
+
+    //Register a default task to run on 'grunt'
+    grunt.registerTask('default', ['jshint']);
   
   };
