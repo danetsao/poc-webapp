@@ -1,43 +1,64 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+  // Load all tasks
+  require("load-grunt-tasks")(grunt);
+  // Show elapsed time
+  require("time-grunt")(grunt);
+  var serveStatic = require("serve-static");
 
-    grunt.initConfig({
-      jshint: {
-        files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+  grunt.initConfig({
+    jshint: {
+      files: ["Gruntfile.js", "src/**/*.js", "test/**/*.js"],
+      options: {
+        globals: {
+          jQuery: true,
+        },
+      },
+    },
+    watch: {
+      files: ["<%= jshint.files %>"],
+      tasks: ["jshint"],
+    },
+    uglify: {
+      options: {
+        mangle: true,
+      },
+      app: {
+        files: {
+          "dist/poc-webapp.min.js": ["dist/poc-webapp.js"],
+        },
+      },
+    },
+    concat: {
+      dist: {
         options: {
-          globals: {
-            jQuery: true
-          }
-        }
+          separator: ";",
+        },
+        src: ["tmp/templates.js", "src/**/*.js"],
+        dest: "dist/poc-webapp.js",
       },
-      watch: {
-        files: ['<%= jshint.files %>'],
-        tasks: ['jshint']
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: "src",
+          keepalive: true,
+          open: true,
+          livereload: true,
+        },
       },
-      connect: {
-        server: {
-            options: {
-                port: 9001,
-                base: 'src',
-                keepalive: true,
-                open: true,
-                livereload: true,
-                }
-            }
-        }
-    });
-
-    // Load tasks
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-
-    // Register a build task to run on 'grunt build', will add more to minify and uglify etc
-    grunt.registerTask('build', ['jshint']);
-
-    // Register a dev task to run on 'grunt dev'
-    grunt.registerTask('dev', ['connect', 'jshint']);
-
-    //Register a default task to run on 'grunt'
-    grunt.registerTask('default', ['jshint']);
+    },
+    auto_install: {
+      local: {},
+    },
+  });
   
-  };
+  // Register a build task to run on 'grunt build', will add more to minify and uglify etc
+  grunt.registerTask("build", ["auto_install", "concat", "uglify", "html2js", "clean"]);
+
+  // Register a dev task to run on 'grunt dev'
+  grunt.registerTask("dev", ["connect", "jshint"]);
+
+  //Register a default task to run on 'grunt'
+  grunt.registerTask("default", ["jshint"]);
+};
