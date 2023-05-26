@@ -15,6 +15,10 @@ In this app we are using andular 1.3.0 to build a custom web page that using dif
 
 - Controllers
 
+- Gruntfile.js
+    - We configured the taskrunner grunt to run a local server and watch for changes in our files.
+    - We also configured grunt to run jshint on our javascript files and in the future possibly run more tests and uglify and minify our files for distribution.
+
 ## Installation
 Will not work locally unless you have wordpress running locally with the [poc-plugin](https://github.com/danetsao/poc-plugin) installed that supports this custom post type.
 ```
