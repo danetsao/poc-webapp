@@ -1,2 +1,2 @@
 // Initialize the app
-angular.module('app', []);
+angular.module('app', ['ngRoute']);

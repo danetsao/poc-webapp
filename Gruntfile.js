@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       local: {},
     },
   });
-  
+
   // Register a build task to run on 'grunt build', will add more to minify and uglify etc
   grunt.registerTask("build", ["auto_install", "concat", "uglify", "html2js", "clean"]);
 
@@ -60,5 +60,5 @@ module.exports = function (grunt) {
   grunt.registerTask("dev", ["connect", "jshint"]);
 
   //Register a default task to run on 'grunt'
-  grunt.registerTask("default", ["jshint"]);
+  grunt.registerTask("default", ["dev"]);
 };

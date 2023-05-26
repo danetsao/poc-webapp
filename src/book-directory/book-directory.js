@@ -2,9 +2,21 @@
 const URL =
   "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
+function config($routeProvider){
+  $routeProvider.when('/book-dir', {
+    templateUrl: 'book-directory/book-directory.tpl.html',
+    controller: 'BookDirController',
+    controllerAs: 'vm'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+};
+
 angular
   .module("app")
 
+  .config(config)
 
   // Add directive to render list of all books
   .directive("book", function () {
