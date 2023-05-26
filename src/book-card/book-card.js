@@ -9,8 +9,9 @@ angular
         controller: "BookCardController",
       });
       $routeProvider.when("/book-card/:post_id", {
+        controller: "BookDirController",
         template: async function (params) {
-          let data = await render_book_card(params.post_id);
+          let data = await render_book_card(params.post_id, list_of_posts);
           return data;
         },
       });
