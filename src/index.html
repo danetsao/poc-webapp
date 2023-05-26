@@ -14,6 +14,7 @@
     <script src="app.js"></script>
     <script src="book-directory/book-directory.js"></script>
     <script src="book-card/book-card.js"></script>
+    <script src="home/home.js"></script>
 </head>
 
 <header>
@@ -32,16 +33,6 @@
   
 
 <body>
-    <div ng-controller="BookDirController">
-        <h2>{{title}}</h2>
-        <p>{{directive_message}}</p>
-        <p>There is currently {{num_posts}} posts that we have pulled from the WordPress REST API.</p>
-    </div>
-
-    <div ng-controller="BookCardController">
-        <h2>{{title}}</h2>
-        <p>{{directive_message}}</p>
-    </div>
     <div ng-view></div>
 
 </body>

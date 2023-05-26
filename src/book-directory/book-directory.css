@@ -15,46 +15,73 @@ a {
   grid-row: 1 / 1;
 }
 
-.book-container .book-card {
-  height: 300px;
-  width: 1200px;
-  z-index: 1;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-}
-
-.book-container .book-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
 .book-container .title-container {
   height: 300px;
   width: 1200px;
-  z-index: 2;
+  z-index: 1;
   background-color: #152238;
-  border-radius: 10px;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 3rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s ease-in-out;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
 }
 
-.book-container .title-container:hover {
+.title-container p {
+  margin: 0;
+  padding: 5px;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.book-card:hover {
+  opacity: 1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.book-card {
+  height: 300px;
+  width: 1200px;
+  z-index: 2;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  color: #152238;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-in-out;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .book-card p {
   margin: 0;
   padding: 5px;
-  color: #042f66;
+  color: #152238;
   font-size: 1.2rem;
   line-height: 1.5;
 }
+
+.book-card button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #152238;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
