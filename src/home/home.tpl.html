@@ -1,4 +1,10 @@
 <div>
     <h1>{{title}}</h1>
     <p>{{directive_message_tpl}}</p>
+    <div ng-repeat="feature in features">
+        <div class="feature-container">
+            <li>{{feature.title}}</h2>
+            <ul>{{feature.description}}</p>
+        </div>
+    </div>
 </div>

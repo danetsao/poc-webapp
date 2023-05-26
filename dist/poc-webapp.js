@@ -1,30 +1,119 @@
 // Initialize the app
-angular.module('app', []);;angular.module("app")
+angular.module('app', ['ngRoute']);;angular
+  .module("app")
 
-    // Add directive to render a book card
-    .directive("card", function () {
+  .config([
+    "$routeProvider",
+    function ($routeProvider) {
+      $routeProvider.when("/book-card", {
+        templateUrl: "book-card/book-card.tpl.html",
+        controller: "BookCardController",
+      });
+      $routeProvider.when("/book-card/:post_id", {
+        template: async function (params) {
+          let data = await render_book_card(params.post_id);
+          return data;
+        },
+      });
+      $routeProvider.otherwise({
+        redirectTo: "/",
+      });
+    },
+  ])
+
+  // Add directive to render a book card
+  .directive("card", function () {
     console.log("book-card directive");
     return {
-        restrict: "EA",
-        templateUrl: "book-card/book-card.tpl.html",
+      restrict: "EA",
+      templateUrl: "book-card/book-card.tpl.html",
     };
-    })
+  })
 
-    // Add controller for the book card
-    .controller("BookCardController", [
+  // Add controller for the book card
+  .controller("BookCardController", [
     "$scope",
-    function ($scope) {
-        $scope.title = "Book Card Controller";
-        $scope.directive_message = "Here we are in book-card controller";
+    "$http",
+    function ($scope, $http) {
+      $scope.title = "Book Card Controller";
+      $scope.directive_message = "Here we are in book-card controller";
+      $scope.directive_message_tpl =
+        "Through this route, you can see individual book cards";
     },
-    ]);
+  ]);
+
+function get_post_data(post_id) {
+  // Get the post data from the WP API
+  let post_data = {};
+  let u =
+    "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-post/post_id";
+  $http
+    .get(u)
+    .then(function (response) {
+      post_data = response.data;
+    })
+    .catch(function (error) {
+      console.error("Error getting post", error);
+    });
+  return post_data;
+}
+
+// Render a book card
+function render_book_card(post_id) {
+  console.log(`1. render_book_card(${post_id})`);
+  return "<h1>This should be data on post: " + post_id + ".</h1>";
+  // Get the post data from the WP API
+  let post = get_post_data(post_id);
+
+  let res =
+    `
+  <div class="book-card">
+    <p class="book-card-title"></p>
+    <p class="date">` +
+    post["post_date"] +
+    `</p>
+    <p class="content-text">` +
+    post["post_content"] +
+    `</p>
+    <a href="#!/book-card/` +
+    post["post_url"] +
+    `">
+      <button>Read More</button>
+    </a>
+    <a href="` +
+    post[post_url] +
+    `"">
+      <button>See original WordPress Post</button>
+    </a>
+  </div>
+
+  <div class="title-container">
+    <p class="title">` +
+    post["post_title"] +
+    `</p>
+  </div>
+  `;
+  return res;
+}
 ;// Get the module
 const URL =
   "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
+function config($routeProvider){
+  $routeProvider.when('/book-dir', {
+    templateUrl: 'book-directory/book-directory.tpl.html',
+    controller: 'BookDirController',
+    controllerAs: 'vm'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+};
+
 angular
   .module("app")
 
+  .config(config)
 
   // Add directive to render list of all books
   .directive("book", function () {
@@ -109,3 +198,37 @@ Example of one book json object from list
         "filter": "raw"
     }
 */
+;angular.module("app")
+
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider.when('/', {
+            templateUrl: 'home/home.tpl.html',
+            controller: 'HomeController',
+        });
+        $routeProvider.otherwise({
+            redirectTo: '/'
+        });
+    }
+    ])
+    .controller("HomeController", [
+        "$scope",
+        function ($scope) {
+            $scope.title = "Welcome to the Home Page";
+            $scope.directive_message = "Here we are in home controller";
+            $scope.directive_message_tpl = "Here we are in home.tpl.html";
+            $scope.features = [
+                {
+                    "title": "Feature 1",
+                    "description": "I will write these later",
+                },
+                {
+                    "title": "Feature 2",
+                    "description": "I will write these later",
+                },
+                {
+                    "title": "Feature 3",
+                    "description": "I will write these later",
+                },
+            ]
+        }
+    ]);
