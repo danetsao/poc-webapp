@@ -16,20 +16,23 @@
 </head>
 
 <header>
-    <h1>POC Webapp</h1>
-    <nav>
+    <div class="container">
+      <h1><a href="#"">POC Webapp</a></h1>
+      <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="book-directory/book-directory.html">Book Directory</a></li>
+          <li><a href="https://github.com/danetsao">Contact</a></li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </div>
+  </header>
+  
 
 <body>
 
     <div ng-controller="BookDirController">
         <h2>{{title}}</h2>
         <p>{{directive_message}}</p>
+        <p>There is currently {{num_posts}} posts that we have pulled from the WordPress REST API.</p>
     </div>
 
     <div ng-controller="BookCardController">

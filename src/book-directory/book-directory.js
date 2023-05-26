@@ -19,7 +19,7 @@ angular
     "$scope",
     "$http",
     function ($scope, $http) {
-      $scope.title = "Book Directory";
+      $scope.title = "Book Directory Controller";
       $scope.directive_message = "Here we are in book-directory controller";
 
       // Define statis list of books in json format
@@ -30,10 +30,12 @@ angular
         .get(URL)
         .then(function (response) {
           $scope.list_of_posts = format_data(response.data);
+          $scope.num_posts = $scope.list_of_posts.length;
         })
         .catch(function (error) {
           console.error("Error getting books", error);
         });
+      
     },
   ]);
 

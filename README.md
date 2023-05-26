@@ -6,5 +6,20 @@ See [onesearch_ui](https://github.com/ualibweb/oneSearch_ui), [staffdir_ui](http
 
 
 ## Features
-
 ## Installation
+
+```
+git clone https://github.com/danetsao/pos-webapp.git
+```
+Install dependencies
+```
+npm install
+```
+```
+bower install
+```
+Then run grunt dev to start the server
+```
+grunt dev
+```
+

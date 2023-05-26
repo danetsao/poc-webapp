@@ -1,14 +1,22 @@
-
 <div ng-controller="BookDirController" class="book-directory">
-    <h2>List of available books:</h2>
-    <div ng-repeat="post in list_of_posts">
+  <h2>List of available books:</h2>
+  <div ng-repeat="post in list_of_posts">
     <a href="{{post['post_url']}}">
-      <div class="book-item">
-        <p><b>{{post['post_title']}}</b></p>
-        <p class="date">{{post['post_date']}}</p>
-        <p>{{post['post_content']}}</p>
+
+      <div class="book-container">
+
+        <div class="title-container">
+          <p class="title">{{post['post_title']}}</p>
+        </div>
+
+        <div class="book-card">
+          <p class="book-card-title">{{post['post_title']}}</p>
+          <p class="date">{{post['post_date']}}</p>
+          <p class="content-text">{{post['post_content']}}</p>
+        </div>
+
       </div>
+
     </a>
-    </div>
   </div>
-  
+</div>
