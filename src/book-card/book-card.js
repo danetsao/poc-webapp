@@ -69,9 +69,6 @@ function render_book_card(post_id) {
         </div>
       </div>
     </div>
-
-    <!-- Update template based on post found or not -->
-  </div>
   `;
   return res;
 }
