@@ -38,6 +38,7 @@ In this app we are using andular 1.8.2 to build a custom web page that using dif
 
 ![book-dir2](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-dir2.jpg)
 ![book-dir1](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-dir1.jpg)
+![book-dir-no-books](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-no-books.jpg)
 
 ### Book Card - /#!/book-card/:post_id
 
