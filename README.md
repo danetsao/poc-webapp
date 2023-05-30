@@ -6,7 +6,7 @@ See [onesearch_ui](https://github.com/ualibweb/oneSearch_ui), [staffdir_ui](http
 
 
 ## Features
-In this app we are using andular 1.3.0 to build a custom web page that using different featuees of angular+wordpress api.
+In this app we are using andular 1.8.2 to build a custom web page that using different featuees of angular+wordpress api.
 
 - Custom rest api
     - With our [poc-plugin](https://github.com/danetsao/poc-plugin) we have created a custom post type called poc.
