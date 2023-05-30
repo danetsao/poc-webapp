@@ -30,8 +30,36 @@ button {
   margin-top: 10px;
 }
 .back-button {
+    background-color: #4c7faf;
+    border: none;
+    color: white;
     padding: 10px;
     margin-top: 10px;
-    margin-left: 10px;
-    color: #ff0000;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.post-id-button {
+    /* Basic button styling*/
+    background-color: #4c7faf;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    /* Round the corners of the button */
+    border-radius: 5px;
+    /* Add a drop shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    /* Add a slight transition to the hover state */
+    transition: all 0.3s ease-in-out;
+}
+
+.post-id-button:hover {
+    /* Change the background color on hover */
+    background-color: #4c7faf;
+    /* Add a drop shadow on hover */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    /* Scale up the text a bit on hover */
+    transform: scale(1.05);
 }

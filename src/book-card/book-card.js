@@ -1,6 +1,8 @@
+// Call the app module
 angular
   .module("app")
 
+  // Config routes
   .config([
     "$routeProvider",
     function ($routeProvider) {
@@ -58,28 +60,32 @@ function get_post_data(post_id) {
   return post_data;
 }
 
-// Render a book card
+/* Function to render a book card for a single book
+
+There may be a better/more efficient way to get a single book from the list of books, 
+ie wp rest to get indivudal post, or lookup with dictionary by id, 
+but looping through each post and only rendering the one with post_id we are looking for works.
+
+*/
 function render_book_card(post_id) {
   var res = `
   <div class="blog-post">
-  <div ng-repeat="post in list_of_posts">
-    <div ng-if="post['ID']===${post_id}">
-      <div class="individual-page">
-        <a href="#!/book-dir">
-          <button class="back-button">Back</button>
-        </a>
-        <p class="post-title">{{post['post_title']}}</p>
-        <p class="post-date">{{post['post_date']}}</p>
-        <p class="post-content">{{post['post_content']}}</p>
-        <a href="{{post['post_url']}}">
-          <button>See original WordPress Post</button>
-        </a>
+    <div ng-repeat="post in list_of_posts">
+      <div ng-if="post['ID']===${post_id}">
+        <div class="individual-page">
+          <a href="#!/book-dir">
+            <button class="back-button">Back</button>
+          </a>
+          <p class="post-title">{{post['post_title']}}</p>
+          <p class="post-date">{{post['post_date']}}</p>
+          <p class="post-content">{{post['post_content']}}</p>
+          <a href="{{post['post_url']}}">
+            <button>See original WordPress Post</button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-  `
-;
-return res;
+  `;
+  return res;
 }

@@ -1,5 +1,7 @@
+// Call the module that was defined in app.js
 angular.module("app")
 
+    // Add config to set up routes
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/', {
             templateUrl: 'home/home.tpl.html',
@@ -10,12 +12,15 @@ angular.module("app")
         });
     }
     ])
+    // Add controller for the home page
     .controller("HomeController", [
         "$scope",
         function ($scope) {
+            // All of this is for the homepage and is unnecessary, but I left it in for example usage of angular features
             $scope.title = "Welcome to the Home Page";
             $scope.directive_message = "Here we are in home controller";
             $scope.directive_message_tpl = "Here we are in home.tpl.html";
+
             // Add list of features, could have been done just plain html
             $scope.features = [
                 {

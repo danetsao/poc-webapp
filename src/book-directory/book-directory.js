@@ -1,22 +1,12 @@
+// Define constant for the URL of the WP API
+const URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+
 // Get the module
-const URL =
-  "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
-
-function config($routeProvider){
-  $routeProvider.when('/book-dir', {
-    templateUrl: 'book-directory/book-directory.tpl.html',
-    controller: 'BookDirController',
-    controllerAs: 'vm'
-  });
-  $routeProvider.otherwise({
-    redirectTo: '/'
-  });
-};
-
 angular
   .module("app")
 
-  .config(config)
+  // Add config to set up routes, not necessary to use a sepearate function
+  .config(config_routes)
 
   // Add directive to render list of all books
   .directive("book", function () {
@@ -34,7 +24,7 @@ angular
       $scope.title = "Book Directory Controller";
       $scope.directive_message = "Here we are in book-directory controller";
 
-      // Define statis list of books in json format
+      // Define list of books in json format
       $scope.list_of_posts = [];
 
       // Get list of books from the WP API
@@ -50,6 +40,20 @@ angular
       
     },
   ]);
+
+// Define functions used in the book-directory
+
+// Define function to set up routes
+function config_routes($routeProvider){
+  $routeProvider.when('/book-dir', {
+    templateUrl: 'book-directory/book-directory.tpl.html',
+    controller: 'BookDirController',
+    controllerAs: 'vm'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+};
 
 // Format the list of posts from the WP API
 function format_data(list_of_posts) {
