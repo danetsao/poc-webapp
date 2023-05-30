@@ -16,19 +16,17 @@ angular.module("app")
             $scope.title = "Welcome to the Home Page";
             $scope.directive_message = "Here we are in home controller";
             $scope.directive_message_tpl = "Here we are in home.tpl.html";
+            // Add list of features, could have been done just plain html
             $scope.features = [
                 {
-                    "title": "Feature 1",
-                    "description": "I will write these later",
+                    "title": "Book Directory",
+                    "description": "List of books, routing through !#/book-dir. Pulled from WP API.",
                 },
                 {
-                    "title": "Feature 2",
-                    "description": "I will write these later",
+                    "title": "Individual Book Pages",
+                    "description": "Routing through !#/book-card/:post_id. Displays individual book cards",
                 },
-                {
-                    "title": "Feature 3",
-                    "description": "I will write these later",
-                },
+
             ]
         }
     ]);

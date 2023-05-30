@@ -60,28 +60,26 @@ function get_post_data(post_id) {
 
 // Render a book card
 function render_book_card(post_id) {
-  var res = `<div ng-repeat="post in list_of_posts">
-  <div ng-if="post['ID']===${post_id}">
-    <div class="book-container">
-    
-      <div class="book-card">
-        <p class="book-card-title">{{post['post_title']}}</p>
-        <p class="date">{{post['post_date']}}</p>
-        <p class="content-text">{{post['post_content']}}</p>
-        <a href="#!/book-card/{{post['ID']}}">
-          <button>Read More</button>
+  var res = `
+  <div class="blog-post">
+  <div ng-repeat="post in list_of_posts">
+    <div ng-if="post['ID']===${post_id}">
+      <div class="individual-page">
+        <a href="#!/book-dir">
+          <button class="back-button">Back</button>
         </a>
-        <a href="{{post['post_url']}}"">
+        <p class="post-title">{{post['post_title']}}</p>
+        <p class="post-date">{{post['post_date']}}</p>
+        <p class="post-content">{{post['post_content']}}</p>
+        <a href="{{post['post_url']}}">
           <button>See original WordPress Post</button>
         </a>
       </div>
-
-      <div class="title-container">
-        <p class="title">{{post['post_title']}}</p>
-      </div>
-
     </div>
   </div>
-</div>`;
+</div>
+
+  `
+;
 return res;
 }

@@ -1,24 +1,13 @@
-<div ng-repeat="post in list_of_posts">
-    <div ng-if="post['ID']==101">
-    <div class="book-container">
-
-      <div class="book-card">
-        <p class="book-card-title">{{post['post_title']}}</p>
-        <p class="date">{{post['post_date']}}</p>
-        <p class="content-text">{{post['post_content']}}</p>
-        <a href="#!/book-card/{{post['ID']}}">
-          <button>Read More</button>
-        </a>
-        <a href="{{post['post_url']}}"">
-          <button>See original WordPress Post</button>
-        </a>
-      </div>
-
-      <div class="title-container">
-        <p class="title">{{post['post_title']}}</p>
-      </div>
-
+<div ng-controller="BookCardController">
+    <div class="book_card_container">
+        <h1>{{directive_message_tpl}}</h1>
+        <h1>Try some of these ids.</h1>
+        <div ng-repeat="post in list_of_posts|limitTo:3">
+            <div class="card-link">
+                <a href="#!/book-card/{{post['ID']}}">
+                    <button>{{post['ID']}}</button>
+                </a>
+            </div>
+        </div>
     </div>
-    </div>
-
 </div>
