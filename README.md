@@ -32,15 +32,17 @@ In this app we are using andular 1.3.0 to build a custom web page that using dif
 
 ### Homepage
 
-![home]()
+![home](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-home.jpg)
 
 ### Book Directory
 
-![book-dir]()
+![book-dir1](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-dir1.jpg)
+![book-dir2](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-dir2.jpg)
 
 ### Book Card
 
-![book-card]()
+![book-card1](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-card1.jpg)
+![book-card2](https://github.com/danetsao/poc-webapp/blob/main/images/poc-webapp-card2.jpg)
 
 
 ## Installation
