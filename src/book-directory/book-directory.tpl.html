@@ -1,25 +1,30 @@
 <div ng-controller="BookDirController" class="book-directory">
-  <h2>List of available books:</h2>
-  <div ng-repeat="post in list_of_posts">
-      <div class="book-container">
+  <div ng-if="books_found">
+    <h2>List of available books:</h2>
+    <div ng-repeat="post in list_of_posts">
+        <div class="book-container">
 
-        <div class="book-card">
-          <p class="book-card-title"><b>{{post['post_title']}}</b></p>
-          <p class="date">{{post['post_date']}}</p>
-          <p class="content-text">{{post['post_content']}}</p>
-          <a href="#!/book-card/{{post['ID']}}">
-            <button>Read More</button>
-          </a>
-          <a href="{{post['post_url']}}"">
-            <button>See original WordPress Post</button>
-          </a>
+          <div class="book-card">
+            <p class="book-card-title"><b>{{post['post_title']}}</b></p>
+            <p class="date">{{post['post_date']}}</p>
+            <p class="content-text">{{post['post_content']}}</p>
+            <a href="#!/book-card/{{post['ID']}}">
+              <button>Read More</button>
+            </a>
+            <a href="{{post['post_url']}}">
+              <button>See original WordPress Post</button>
+            </a>
+          </div>
+
+          <div class="title-container">
+            <p class="title">{{post['post_title']}}</p>
+          </div>
+
         </div>
 
-        <div class="title-container">
-          <p class="title">{{post['post_title']}}</p>
-        </div>
-
-      </div>
-
+    </div>  
+  </div>
+  <div ng-if="!books_found">
+    <h2>Sorry, no books found.</h2>
   </div>
 </div>

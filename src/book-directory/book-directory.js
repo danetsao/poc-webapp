@@ -26,11 +26,13 @@ angular
 
       // Define list of books in json format
       $scope.list_of_posts = [];
+      $scope.books_found = false;
 
       // Get list of books from the WP API
       $http
         .get(URL)
         .then(function (response) {
+          $scope.books_found = true;
           $scope.list_of_posts = format_data(response.data);
           $scope.num_posts = $scope.list_of_posts.length;
         })

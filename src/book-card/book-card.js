@@ -44,22 +44,6 @@ angular
     },
   ]);
 
-function get_post_data(post_id) {
-  // Get the post data from the WP API
-  let post_data = {};
-  let u =
-    "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-post/post_id";
-  $http
-    .get(u)
-    .then(function (response) {
-      post_data = response.data;
-    })
-    .catch(function (error) {
-      console.error("Error getting post", error);
-    });
-  return post_data;
-}
-
 /* Function to render a book card for a single book
 
 There may be a better/more efficient way to get a single book from the list of books, 
@@ -85,6 +69,8 @@ function render_book_card(post_id) {
         </div>
       </div>
     </div>
+
+    <!-- Update template based on post found or not -->
   </div>
   `;
   return res;
