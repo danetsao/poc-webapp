@@ -11,13 +11,37 @@ In this app we are using andular 1.3.0 to build a custom web page that using dif
 - Custom rest api
     - With our [poc-plugin](https://github.com/danetsao/poc-plugin) we have created a custom post type called poc.
     - We register a custom rest api that allows us to get all the poc posts and get a single poc post by id.
-- Directives
+- Routes
+    - /#!/
+        - Home page and default for any route not registered
+    - /#!/book-dir
+        - Displays a book directory which is a list of all the books
+        - Contains links to each individual book card and the original wordpress post
+    - /#!/book-card/
+        - A simple page that just shows how to access the individual book card
+    - /#!/book-card/:id
+        - Displays the book card indiviudally by id
 
-- Controllers
 
 - Gruntfile.js
     - We configured the taskrunner grunt to run a local server and watch for changes in our files.
     - We also configured grunt to run jshint on our javascript files and in the future possibly run more tests and uglify and minify our files for distribution.
+
+
+## Images
+
+### Homepage
+
+![home]()
+
+### Book Directory
+
+![book-dir]()
+
+### Book Card
+
+![book-card]()
+
 
 ## Installation
 Will not work locally unless you have wordpress running locally with the [poc-plugin](https://github.com/danetsao/poc-plugin) installed that supports this custom post type.
@@ -33,6 +57,6 @@ bower install
 ```
 Then run grunt dev to start the server
 ```
-grunt dev
+grunt
 ```
 
