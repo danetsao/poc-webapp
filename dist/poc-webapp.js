@@ -45,22 +45,6 @@ angular
     },
   ]);
 
-function get_post_data(post_id) {
-  // Get the post data from the WP API
-  let post_data = {};
-  let u =
-    "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-post/post_id";
-  $http
-    .get(u)
-    .then(function (response) {
-      post_data = response.data;
-    })
-    .catch(function (error) {
-      console.error("Error getting post", error);
-    });
-  return post_data;
-}
-
 /* Function to render a book card for a single book
 
 There may be a better/more efficient way to get a single book from the list of books, 
@@ -86,12 +70,11 @@ function render_book_card(post_id) {
         </div>
       </div>
     </div>
-  </div>
   `;
   return res;
 }
 ;// Define constant for the URL of the WP API
-const URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+var URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
 // Get the module
 angular
@@ -118,11 +101,13 @@ angular
 
       // Define list of books in json format
       $scope.list_of_posts = [];
+      $scope.books_found = false;
 
       // Get list of books from the WP API
       $http
         .get(URL)
         .then(function (response) {
+          $scope.books_found = true;
           $scope.list_of_posts = format_data(response.data);
           $scope.num_posts = $scope.list_of_posts.length;
         })
@@ -145,24 +130,25 @@ function config_routes($routeProvider){
   $routeProvider.otherwise({
     redirectTo: '/'
   });
-};
+}
 
 // Format the list of posts from the WP API
 function format_data(list_of_posts) {
-  for (let i = 0; i < list_of_posts.length; i++) {
+  for (var i = 0; i < list_of_posts.length; i++) {
     // Format content, ie remove <span> tags
-    let content = list_of_posts[i]["post_content"];
-    list_of_posts[i]["post_content"] = content
+    var content = list_of_posts[i].post_content;
+    list_of_posts[i].post_content = content
       .replace("<span>", "")
       .replace("</span>", "");
+    list_of_posts[i].post_content_preview = list_of_posts[i].post_content.substring(0, 100) + "...";
 
     // Format data
-    let date = list_of_posts[i]["post_date"];
-    list_of_posts[i]["post_date"] = date.substring(0, 10);
+    var date = list_of_posts[i].post_date;
+    list_of_posts[i].post_date = date.substring(0, 10);
 
     // Format url to link to post
-    let post_name = list_of_posts[i]["post_name"];
-    list_of_posts[i]["post_url"] =
+    var post_name = list_of_posts[i].post_name;
+    list_of_posts[i].post_url =
       "http://localhost/sites/wordpress/?book_collection_post=$" + post_name;
   }
   return list_of_posts;
@@ -240,6 +226,6 @@ angular.module("app")
                     ],
                 },
 
-            ]
+            ];
         }
     ]);

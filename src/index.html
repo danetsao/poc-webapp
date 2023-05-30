@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="app">
+  
 <head>
     <meta charset="UTF-8">
     <title>POC Webapp</title>
@@ -17,26 +18,27 @@
     <script src="book-directory/book-directory.js"></script>
     <script src="book-card/book-card.js"></script>
     <script src="home/home.js"></script>
+
 </head>
 
 <header>
-    <div class="container">
-      <h1><a href="#!">POC Webapp</a></h1>
-      <nav>
-        <ul>
-          <li><a href="#!/">Home</a></li>
-          <li><a href="#!/book-dir">Book Directory</a></li>
-          <li><a href="#!/book-card">Book Card</a></li>
-          <li><a href="https://github.com/danetsao">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  
+  <div class="container">
+    <h1><a href="#!">POC Webapp</a></h1>
+    <nav>
+      <ul>
+        <li><a href="#!/">Home</a></li>
+        <li><a href="#!/book-dir">Book Directory</a></li>
+        <li><a href="#!/book-card">Book Card</a></li>
+        <li><a href="https://github.com/danetsao">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
 <body>
 
-    <div ng-view></div>
+  <div ng-view></div>
 
 </body>
 

@@ -42,6 +42,6 @@ angular.module("app")
                     ],
                 },
 
-            ]
+            ];
         }
     ]);

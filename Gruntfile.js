@@ -9,6 +9,7 @@ module.exports = function (grunt) {
     jshint: {
       files: ["Gruntfile.js", "src/**/*.js", "test/**/*.js"],
       options: {
+        esversion: 6,
         globals: {
           jQuery: true,
         },
@@ -54,10 +55,13 @@ module.exports = function (grunt) {
   });
 
   // Register a build task to run on 'grunt build', will add more to minify and uglify etc
-  grunt.registerTask("build", ["concat", "uglify", "html2js"]);
+  grunt.registerTask("build", ["auto_install", "concat", "uglify", "jshint"]);
 
   // Register a dev task to run on 'grunt dev'
   grunt.registerTask("dev", ["connect", "jshint"]);
+
+  // Register a task to docs
+  grunt.registerTask('docs', ['connect:docs', 'watch']);
 
   //Register a default task to run on 'grunt'
   grunt.registerTask("default", ["dev"]);

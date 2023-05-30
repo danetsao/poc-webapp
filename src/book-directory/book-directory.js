@@ -1,5 +1,5 @@
 // Define constant for the URL of the WP API
-const URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+var URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
 // Get the module
 angular
@@ -55,25 +55,25 @@ function config_routes($routeProvider){
   $routeProvider.otherwise({
     redirectTo: '/'
   });
-};
+}
 
 // Format the list of posts from the WP API
 function format_data(list_of_posts) {
-  for (let i = 0; i < list_of_posts.length; i++) {
+  for (var i = 0; i < list_of_posts.length; i++) {
     // Format content, ie remove <span> tags
-    let content = list_of_posts[i]["post_content"];
-    list_of_posts[i]["post_content"] = content
+    var content = list_of_posts[i].post_content;
+    list_of_posts[i].post_content = content
       .replace("<span>", "")
       .replace("</span>", "");
-    list_of_posts[i]["post_content_preview"] = list_of_posts[i]["post_content"].substring(0, 100) + "...";
+    list_of_posts[i].post_content_preview = list_of_posts[i].post_content.substring(0, 100) + "...";
 
     // Format data
-    let date = list_of_posts[i]["post_date"];
-    list_of_posts[i]["post_date"] = date.substring(0, 10);
+    var date = list_of_posts[i].post_date;
+    list_of_posts[i].post_date = date.substring(0, 10);
 
     // Format url to link to post
-    let post_name = list_of_posts[i]["post_name"];
-    list_of_posts[i]["post_url"] =
+    var post_name = list_of_posts[i].post_name;
+    list_of_posts[i].post_url =
       "http://localhost/sites/wordpress/?book_collection_post=$" + post_name;
   }
   return list_of_posts;
