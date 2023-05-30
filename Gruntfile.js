@@ -54,7 +54,7 @@ module.exports = function (grunt) {
   });
 
   // Register a build task to run on 'grunt build', will add more to minify and uglify etc
-  grunt.registerTask("build", ["auto_install", "concat", "uglify", "html2js", "clean"]);
+  grunt.registerTask("build", ["concat", "uglify", "html2js"]);
 
   // Register a dev task to run on 'grunt dev'
   grunt.registerTask("dev", ["connect", "jshint"]);

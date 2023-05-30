@@ -1,18 +1,21 @@
-// Initialize the app
-angular.module('app', ['ngRoute']);;angular
+// Initialize the app module with ngRoute
+angular.module('app', ['ngRoute']);;// Call the app module
+angular
   .module("app")
 
+  // Config routes
   .config([
     "$routeProvider",
     function ($routeProvider) {
       $routeProvider.when("/book-card", {
         templateUrl: "book-card/book-card.tpl.html",
-        controller: "BookCardController",
+        controller: "BookDirController",
       });
       $routeProvider.when("/book-card/:post_id", {
-        template: async function (params) {
-          let data = await render_book_card(params.post_id);
-          return data;
+        controller: "BookDirController",
+        template: function (params) {
+          var res = render_book_card(params.post_id);
+          return res;
         },
       });
       $routeProvider.otherwise({
@@ -58,62 +61,44 @@ function get_post_data(post_id) {
   return post_data;
 }
 
-// Render a book card
+/* Function to render a book card for a single book
+
+There may be a better/more efficient way to get a single book from the list of books, 
+ie wp rest to get indivudal post, or lookup with dictionary by id, 
+but looping through each post and only rendering the one with post_id we are looking for works.
+
+*/
 function render_book_card(post_id) {
-  console.log(`1. render_book_card(${post_id})`);
-  return "<h1>This should be data on post: " + post_id + ".</h1>";
-  // Get the post data from the WP API
-  let post = get_post_data(post_id);
-
-  let res =
-    `
-  <div class="book-card">
-    <p class="book-card-title"></p>
-    <p class="date">` +
-    post["post_date"] +
-    `</p>
-    <p class="content-text">` +
-    post["post_content"] +
-    `</p>
-    <a href="#!/book-card/` +
-    post["post_url"] +
-    `">
-      <button>Read More</button>
-    </a>
-    <a href="` +
-    post[post_url] +
-    `"">
-      <button>See original WordPress Post</button>
-    </a>
-  </div>
-
-  <div class="title-container">
-    <p class="title">` +
-    post["post_title"] +
-    `</p>
+  var res = `
+  <div class="blog-post">
+    <div ng-repeat="post in list_of_posts">
+      <div ng-if="post['ID']===${post_id}">
+        <div class="individual-page">
+          <a href="#!/book-dir">
+            <button class="back-button">Back</button>
+          </a>
+          <p class="post-title">{{post['post_title']}}</p>
+          <p class="post-date">{{post['post_date']}}</p>
+          <p class="post-content">{{post['post_content']}}</p>
+          <a href="{{post['post_url']}}">
+            <button class="wp-button">See original WordPress Post</button>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
   `;
   return res;
 }
-;// Get the module
-const URL =
-  "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+;// Define constant for the URL of the WP API
+const URL = "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
 
-function config($routeProvider){
-  $routeProvider.when('/book-dir', {
-    templateUrl: 'book-directory/book-directory.tpl.html',
-    controller: 'BookDirController',
-    controllerAs: 'vm'
-  });
-  $routeProvider.otherwise({
-    redirectTo: '/'
-  });
-};
-
+// Get the module
 angular
   .module("app")
 
-  .config(config)
+  // Add config to set up routes, not necessary to use a sepearate function
+  .config(config_routes)
 
   // Add directive to render list of all books
   .directive("book", function () {
@@ -131,7 +116,7 @@ angular
       $scope.title = "Book Directory Controller";
       $scope.directive_message = "Here we are in book-directory controller";
 
-      // Define statis list of books in json format
+      // Define list of books in json format
       $scope.list_of_posts = [];
 
       // Get list of books from the WP API
@@ -147,6 +132,20 @@ angular
       
     },
   ]);
+
+// Define functions used in the book-directory
+
+// Define function to set up routes
+function config_routes($routeProvider){
+  $routeProvider.when('/book-dir', {
+    templateUrl: 'book-directory/book-directory.tpl.html',
+    controller: 'BookDirController',
+    controllerAs: 'vm'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+};
 
 // Format the list of posts from the WP API
 function format_data(list_of_posts) {
@@ -197,9 +196,10 @@ Example of one book json object from list
         "comment_count": "0",
         "filter": "raw"
     }
-*/
-;angular.module("app")
+*/;// Call the module that was defined in app.js
+angular.module("app")
 
+    // Add config to set up routes
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/', {
             templateUrl: 'home/home.tpl.html',
@@ -210,25 +210,36 @@ Example of one book json object from list
         });
     }
     ])
+    // Add controller for the home page
     .controller("HomeController", [
         "$scope",
         function ($scope) {
+            // All of this is for the homepage and is unnecessary, but I left it in for example usage of angular features
             $scope.title = "Welcome to the Home Page";
             $scope.directive_message = "Here we are in home controller";
             $scope.directive_message_tpl = "Here we are in home.tpl.html";
+
+            // Add list of features, could have been done just plain html
             $scope.features = [
                 {
-                    "title": "Feature 1",
-                    "description": "I will write these later",
+                    "title": "Book Directory",
+                    "title_link": "#!/book-dir",
+                    "description": [
+                        "Book posts are pulled from WP API.",
+                        "Routing through /#!/book-dir.",
+                        "Contains links to both the book-card page on this app, and the original wordpress post."
+                    ],
                 },
                 {
-                    "title": "Feature 2",
-                    "description": "I will write these later",
+                    "title": "Individual Book Pages",
+                    "title_link": "#!/book-card",
+                    "description": [
+                        "Displays individual book cards by id.",
+                        "Routing through /#!/book-card/:post_id.",
+                        "Duplicate of book display in the book-dir, but demonstrates routes."
+                    ],
                 },
-                {
-                    "title": "Feature 3",
-                    "description": "I will write these later",
-                },
+
             ]
         }
     ]);

@@ -80,7 +80,7 @@ function render_book_card(post_id) {
           <p class="post-date">{{post['post_date']}}</p>
           <p class="post-content">{{post['post_content']}}</p>
           <a href="{{post['post_url']}}">
-            <button>See original WordPress Post</button>
+            <button class="wp-button">See original WordPress Post</button>
           </a>
         </div>
       </div>

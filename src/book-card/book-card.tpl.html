@@ -1,7 +1,7 @@
 <div ng-controller="BookCardController">
     <div class="book_card_container">
-        <h1>{{directive_message_tpl}}</h1>
-        <h1>Try some of these ids.</h1>
+        <h2>{{directive_message_tpl}}</h2>
+        <h2>Try some of these ids.</h2>
         <div ng-repeat="post in list_of_posts|limitTo:3">
             <div class="card-link">
                 <a href="#!/book-card/{{post['ID']}}">

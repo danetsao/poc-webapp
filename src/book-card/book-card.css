@@ -6,7 +6,10 @@
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   padding: 20px;
+  margin-left: 278px;
   margin-bottom: 20px;
+  height: 500px;
+  width: 700px;
 }
 
 .post-title {
@@ -30,7 +33,18 @@ button {
   margin-top: 10px;
 }
 .back-button {
-    background-color: #4c7faf;
+    background-color: #152238;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.wp-button {
+    background-color: #152238;
     border: none;
     color: white;
     padding: 10px;
@@ -41,8 +55,10 @@ button {
 }
 
 .post-id-button {
+    height: 70px;
+    width: 175px;
     /* Basic button styling*/
-    background-color: #4c7faf;
+    background-color: #152238;
     border: none;
     color: white;
     padding: 10px;
@@ -53,11 +69,14 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     /* Add a slight transition to the hover state */
     transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    font-weight: bold;
 }
+
 
 .post-id-button:hover {
     /* Change the background color on hover */
-    background-color: #4c7faf;
+    background-color: #152238;
     /* Add a drop shadow on hover */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     /* Scale up the text a bit on hover */

@@ -25,11 +25,21 @@ angular.module("app")
             $scope.features = [
                 {
                     "title": "Book Directory",
-                    "description": "List of books, routing through !#/book-dir. Pulled from WP API.",
+                    "title_link": "#!/book-dir",
+                    "description": [
+                        "Book posts are pulled from WP API.",
+                        "Routing through /#!/book-dir.",
+                        "Contains links to both the book-card page on this app, and the original wordpress post."
+                    ],
                 },
                 {
                     "title": "Individual Book Pages",
-                    "description": "Routing through !#/book-card/:post_id. Displays individual book cards",
+                    "title_link": "#!/book-card",
+                    "description": [
+                        "Displays individual book cards by id.",
+                        "Routing through /#!/book-card/:post_id.",
+                        "Duplicate of book display in the book-dir, but demonstrates routes."
+                    ],
                 },
 
             ]

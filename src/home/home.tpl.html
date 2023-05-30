@@ -3,8 +3,12 @@
     <h2>Features</h2>
     <div ng-repeat="feature in features">
         <div class="feature-container">
-            <h2 class="feature-title">{{feature.title}}</h2>
-            <p class="feature-description">{{feature.description}}</p>
+            <a href={{feature.title_link}}>
+                <h2 class="feature-title">{{feature.title}}</h2>
+            </a>
+            <div ng-repeat="d in feature.description">
+                <li>{{d}}</li>
+            </div>
         </div>
     </div>
 </div>
