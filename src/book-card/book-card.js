@@ -6,13 +6,13 @@ angular
     function ($routeProvider) {
       $routeProvider.when("/book-card", {
         templateUrl: "book-card/book-card.tpl.html",
-        controller: "BookCardController",
+        controller: "BookDirController",
       });
       $routeProvider.when("/book-card/:post_id", {
         controller: "BookDirController",
-        template: async function (params) {
-          let data = await render_book_card(params.post_id, list_of_posts);
-          return data;
+        template: function (params) {
+          var res = render_book_card(params.post_id);
+          return res;
         },
       });
       $routeProvider.otherwise({
@@ -60,38 +60,28 @@ function get_post_data(post_id) {
 
 // Render a book card
 function render_book_card(post_id) {
-  console.log(`1. render_book_card(${post_id})`);
-  return "<h1>This should be data on post: " + post_id + ".</h1>";
-  // Get the post data from the WP API
-  let post = get_post_data(post_id);
+  var res = `<div ng-repeat="post in list_of_posts">
+  <div ng-if="post['ID']===${post_id}">
+    <div class="book-container">
+    
+      <div class="book-card">
+        <p class="book-card-title">{{post['post_title']}}</p>
+        <p class="date">{{post['post_date']}}</p>
+        <p class="content-text">{{post['post_content']}}</p>
+        <a href="#!/book-card/{{post['ID']}}">
+          <button>Read More</button>
+        </a>
+        <a href="{{post['post_url']}}"">
+          <button>See original WordPress Post</button>
+        </a>
+      </div>
 
-  let res =
-    `
-  <div class="book-card">
-    <p class="book-card-title"></p>
-    <p class="date">` +
-    post["post_date"] +
-    `</p>
-    <p class="content-text">` +
-    post["post_content"] +
-    `</p>
-    <a href="#!/book-card/` +
-    post["post_url"] +
-    `">
-      <button>Read More</button>
-    </a>
-    <a href="` +
-    post[post_url] +
-    `"">
-      <button>See original WordPress Post</button>
-    </a>
-  </div>
+      <div class="title-container">
+        <p class="title">{{post['post_title']}}</p>
+      </div>
 
-  <div class="title-container">
-    <p class="title">` +
-    post["post_title"] +
-    `</p>
+    </div>
   </div>
-  `;
-  return res;
+</div>`;
+return res;
 }
