@@ -16,8 +16,8 @@ a {
 }
 
 .book-container .title-container {
-  height: 300px;
-  width: 1200px;
+  height: 200px;
+  width: 800px;
   z-index: 1;
   background-color: #152238;
   color: #fff;
@@ -50,8 +50,8 @@ a {
 }
 
 .book-card {
-  height: 300px;
-  width: 1200px;
+  height: 150;
+  width: 800px;
   z-index: 2;
   background-color: #f6f6f6;
   border-radius: 10px;

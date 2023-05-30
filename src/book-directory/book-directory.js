@@ -65,6 +65,7 @@ function format_data(list_of_posts) {
     list_of_posts[i]["post_content"] = content
       .replace("<span>", "")
       .replace("</span>", "");
+    list_of_posts[i]["post_content_preview"] = list_of_posts[i]["post_content"].substring(0, 100) + "...";
 
     // Format data
     let date = list_of_posts[i]["post_date"];
