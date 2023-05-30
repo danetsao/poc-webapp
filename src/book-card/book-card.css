@@ -8,15 +8,16 @@
   padding: 20px;
   margin-left: 278px;
   margin-bottom: 20px;
-  height: 500px;
+  height: auto;
   width: 700px;
 }
 
 .post-title {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 
 .post-date {
   font-style: italic;
@@ -26,6 +27,7 @@
 
 .post-content {
   margin-bottom: 10px;
+  font-size: 20px;
 }
 
 button {
