@@ -1,4 +1,50 @@
-// Initialize the app module with ngRoute
+// Get the module
+angular
+  .module("app")
+
+  // Add config to set up routes, not necessary to use a sepearate function
+  .config(config_routes)
+
+  // Add controller for the book directory
+  .controller("AdminController", [
+    "$scope",
+    "$http",
+    function ($scope, $http) {
+        $scope.auth = true;
+        $scope.title = "Admin Page";
+
+        $scope.login = function() {
+            console.log('Trying to login with password: ' + $scope.password);
+            var password = $scope.password;
+            if (password === '123') {
+                alert('Successfully logged in.');
+                $scope.auth = true;
+            }
+            else {
+                alert('Wrong Password. Try again.');
+            }
+          }
+
+        $scope.logout = function() {
+            $scope.auth = false;
+        }
+        
+
+    },
+  ]);
+
+
+// Define function to set up routes
+function config_routes($routeProvider){
+  $routeProvider.when('/admin', {
+    templateUrl: 'admin/admin.tpl.html',
+    controller: 'AdminController',
+    controllerAs: 'vm'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+};// Initialize the app module with ngRoute
 angular.module('app', ['ngRoute']);;// Call the app module
 angular
   .module("app")
@@ -24,7 +70,7 @@ angular
     },
   ])
 
-  // Add directive to render a book card
+  // Add directive to render a book-card
   .directive("card", function () {
     console.log("book-card directive");
     return {
@@ -204,6 +250,12 @@ angular.module("app")
             $scope.title = "Welcome to the Home Page";
             $scope.directive_message = "Here we are in home controller";
             $scope.directive_message_tpl = "Here we are in home.tpl.html";
+            $scope.dropdown = false;
+
+
+            $scope.toggleDropdown = function () {
+                $scope.dropdown = !$scope.dropdown;
+            };
 
             // Add list of features, could have been done just plain html
             $scope.features = [

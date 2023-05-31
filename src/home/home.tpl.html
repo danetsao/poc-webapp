@@ -1,14 +1,19 @@
 <div>
     <h1>{{title}}</h1>
-    <h2>Features</h2>
-    <div ng-repeat="feature in features">
-        <div class="feature-container">
-            <a href={{feature.title_link}}>
-                <h2 class="feature-title">{{feature.title}}</h2>
-            </a>
-            <div ng-repeat="d in feature.description">
-                <li>{{d}}</li>
-            </div>
-        </div>
+    <div class="dropdown">
+      <button ng-click="toggleDropdown()" class="dropdown-toggle">
+        <h2><u>Features</u></h2>
+      </button>
+      <ul ng-show="dropdown" class="dropdown-menu">
+        <li ng-repeat="feature in features">
+          <a href="{{feature.title_link}}">
+            <h2 class="feature-title">{{feature.title}}</h2>
+          </a>
+          <ul class="feature-description">
+            <li ng-repeat="d in feature.description">{{d}}</li>
+          </ul>
+        </li>
+      </ul>
     </div>
-</div>
+  </div>
+  

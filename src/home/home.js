@@ -20,6 +20,12 @@ angular.module("app")
             $scope.title = "Welcome to the Home Page";
             $scope.directive_message = "Here we are in home controller";
             $scope.directive_message_tpl = "Here we are in home.tpl.html";
+            $scope.dropdown = false;
+
+
+            $scope.toggleDropdown = function () {
+                $scope.dropdown = !$scope.dropdown;
+            };
 
             // Add list of features, could have been done just plain html
             $scope.features = [

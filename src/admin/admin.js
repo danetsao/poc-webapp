@@ -23,7 +23,12 @@ angular
             else {
                 alert('Wrong Password. Try again.');
             }
-          };
+          }
+
+        $scope.logout = function() {
+            $scope.auth = false;
+        }
+        
 
     },
   ]);
