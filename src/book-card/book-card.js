@@ -23,7 +23,7 @@ angular
     },
   ])
 
-  // Add directive to render a book card
+  // Add directive to render a book-card
   .directive("card", function () {
     console.log("book-card directive");
     return {
