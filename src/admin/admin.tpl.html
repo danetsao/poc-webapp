@@ -1,3 +1,30 @@
 <div>
-    <h2>{{title}}</h2>
+    <div ng-show="!auth" class="login-form">
+        <form ng-submit="login()">
+          <input type="password" ng-model="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      
+
+    <div ng-show="auth">
+        <h2>{{title}}</h2>
+        <div class="grid-container">
+            <div class="box box-1">
+                <h3>Books</h3>
+                <p>Info on users</p>
+            </div>
+            <div class="box box-2">
+            <h3>Authors</h3>
+            </div>
+            <div class="box box-3">
+            <h3>Users</h3>
+            <p>Info on users</p>
+            </div>
+            <div class="box box-4">
+            <h3>Color Mode</h3>
+            </div>
+        </div>
+    </div>
+
 </div>

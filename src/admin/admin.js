@@ -10,7 +10,21 @@ angular
     "$scope",
     "$http",
     function ($scope, $http) {
+        $scope.auth = true;
         $scope.title = "Admin Page";
+
+        $scope.login = function() {
+            console.log('Trying to login with password: ' + $scope.password);
+            var password = $scope.password;
+            if (password === '123') {
+                alert('Successfully logged in.');
+                $scope.auth = true;
+            }
+            else {
+                alert('Wrong Password. Try again.');
+            }
+          };
+
     },
   ]);
 
