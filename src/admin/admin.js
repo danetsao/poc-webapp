@@ -10,7 +10,7 @@ angular
     "$scope",
     "$http",
     function ($scope, $http) {
-        $scope.auth = true;
+        $scope.auth = false;
         $scope.title = "Admin Page";
 
         $scope.login = function() {
@@ -28,11 +28,12 @@ angular
         $scope.logout = function() {
             $scope.auth = false;
         }
+
         
+
 
     },
   ]);
-
 
 // Define function to set up routes
 function config_routes($routeProvider){

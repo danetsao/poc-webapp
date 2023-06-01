@@ -19,8 +19,8 @@ angular
   // Add controller for the book directory
   .controller("BookDirController", [
     "$scope",
-    "$http",
-    function ($scope, $http) {
+    "bookFactory",
+    function ($scope, $bookFactory) {
       $scope.title = "Book Directory Controller";
       $scope.directive_message = "Here we are in book-directory controller";
 
@@ -29,19 +29,17 @@ angular
       $scope.books_found = false;
 
       // Get list of books from the WP API
-      $http
-        .get(URL)
-        .then(function (response) {
-          $scope.books_found = true;
-          $scope.list_of_posts = format_data(response.data);
-          $scope.num_posts = $scope.list_of_posts.length;
-        })
-        .catch(function (error) {
-          console.error("Error getting books", error);
-        });
-      
-    },
-  ]);
+      $bookFactory.getBooks()
+      .then(function (books) {
+        $scope.books_found = true;
+        $scope.list_of_posts = format_data(books);
+        $scope.num_posts = $scope.list_of_posts.length;
+      })
+      .catch(function (error) {
+        console.error("Error getting books", error);
+      });
+  },
+]);
 
 // Define functions used in the book-directory
 
