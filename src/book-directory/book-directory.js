@@ -28,11 +28,11 @@ angular
       $scope.list_of_posts = [];
       $scope.books_found = false;
 
-      // Get list of books from the WP API
+      // Get list of books from the book factory and WP API
       $bookFactory.getBooks()
       .then(function (books) {
         $scope.books_found = true;
-        $scope.list_of_posts = format_data(books);
+        $scope.list_of_posts = books;
         $scope.num_posts = $scope.list_of_posts.length;
       })
       .catch(function (error) {
@@ -53,28 +53,6 @@ function config_routes($routeProvider){
   $routeProvider.otherwise({
     redirectTo: '/'
   });
-}
-
-// Format the list of posts from the WP API
-function format_data(list_of_posts) {
-  for (var i = 0; i < list_of_posts.length; i++) {
-    // Format content, ie remove <span> tags
-    var content = list_of_posts[i].post_content;
-    list_of_posts[i].post_content = content
-      .replace("<span>", "")
-      .replace("</span>", "");
-    list_of_posts[i].post_content_preview = list_of_posts[i].post_content.substring(0, 100) + "...";
-
-    // Format data
-    var date = list_of_posts[i].post_date;
-    list_of_posts[i].post_date = date.substring(0, 10);
-
-    // Format url to link to post
-    var post_name = list_of_posts[i].post_name;
-    list_of_posts[i].post_url =
-      "http://localhost/sites/wordpress/?book_collection_post=$" + post_name;
-  }
-  return list_of_posts;
 }
 
 /*

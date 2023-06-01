@@ -44,12 +44,11 @@ angular
     },
   ]);
 
-/* Function to render a book card for a single book
-
+/* 
+Function to render a book card for a single book
 There may be a better/more efficient way to get a single book from the list of books, 
 ie wp rest to get indivudal post, or lookup with dictionary by id, 
 but looping through each post and only rendering the one with post_id we are looking for works.
-
 */
 function render_book_card(post_id) {
   var res = `

@@ -10,7 +10,7 @@ angular
     "$scope",
     "$http",
     function ($scope, $http) {
-        $scope.auth = true;
+        $scope.auth = false;
         $scope.title = "Admin Page";
 
         $scope.login = function() {
@@ -28,11 +28,12 @@ angular
         $scope.logout = function() {
             $scope.auth = false;
         }
+
         
+
 
     },
   ]);
-
 
 // Define function to set up routes
 function config_routes($routeProvider){
@@ -91,12 +92,11 @@ angular
     },
   ]);
 
-/* Function to render a book card for a single book
-
+/* 
+Function to render a book card for a single book
 There may be a better/more efficient way to get a single book from the list of books, 
 ie wp rest to get indivudal post, or lookup with dictionary by id, 
 but looping through each post and only rendering the one with post_id we are looking for works.
-
 */
 function render_book_card(post_id) {
   var res = `
@@ -140,8 +140,8 @@ angular
   // Add controller for the book directory
   .controller("BookDirController", [
     "$scope",
-    "$http",
-    function ($scope, $http) {
+    "bookFactory",
+    function ($scope, $bookFactory) {
       $scope.title = "Book Directory Controller";
       $scope.directive_message = "Here we are in book-directory controller";
 
@@ -149,20 +149,18 @@ angular
       $scope.list_of_posts = [];
       $scope.books_found = false;
 
-      // Get list of books from the WP API
-      $http
-        .get(URL)
-        .then(function (response) {
-          $scope.books_found = true;
-          $scope.list_of_posts = format_data(response.data);
-          $scope.num_posts = $scope.list_of_posts.length;
-        })
-        .catch(function (error) {
-          console.error("Error getting books", error);
-        });
-      
-    },
-  ]);
+      // Get list of books from the book factory and WP API
+      $bookFactory.getBooks()
+      .then(function (books) {
+        $scope.books_found = true;
+        $scope.list_of_posts = books;
+        $scope.num_posts = $scope.list_of_posts.length;
+      })
+      .catch(function (error) {
+        console.error("Error getting books", error);
+      });
+  },
+]);
 
 // Define functions used in the book-directory
 
@@ -176,28 +174,6 @@ function config_routes($routeProvider){
   $routeProvider.otherwise({
     redirectTo: '/'
   });
-}
-
-// Format the list of posts from the WP API
-function format_data(list_of_posts) {
-  for (var i = 0; i < list_of_posts.length; i++) {
-    // Format content, ie remove <span> tags
-    var content = list_of_posts[i].post_content;
-    list_of_posts[i].post_content = content
-      .replace("<span>", "")
-      .replace("</span>", "");
-    list_of_posts[i].post_content_preview = list_of_posts[i].post_content.substring(0, 100) + "...";
-
-    // Format data
-    var date = list_of_posts[i].post_date;
-    list_of_posts[i].post_date = date.substring(0, 10);
-
-    // Format url to link to post
-    var post_name = list_of_posts[i].post_name;
-    list_of_posts[i].post_url =
-      "http://localhost/sites/wordpress/?book_collection_post=$" + post_name;
-  }
-  return list_of_posts;
 }
 
 /*
@@ -228,7 +204,75 @@ Example of one book json object from list
         "comment_count": "0",
         "filter": "raw"
     }
-*/;// Call the module that was defined in app.js
+*/;var app = angular.module("app");
+
+app.factory("bookFactory", [
+  "$http",
+  function ($http) {
+    var BASEURL =
+      "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-posts";
+    var BASEURLID =
+      "http://localhost/sites/wordpress/?rest_route=/poc-plugin/v1/custom-post";
+
+    // Define the factory object
+    var factory = {};
+
+    // Function to get a list of books
+    factory.getBooks = function () {
+      return $http
+        .get(BASEURL)
+        .then(function (response) {
+          var data = formatData(response.data);
+          return data;
+        })
+        .catch(function (error) {
+          console.log("Error fetching books:", error);
+          return [];
+        });
+    };
+
+    // Function to get a single book by ID
+    factory.getBookById = function (bookId) {
+      var url = BASEURLID + "/" + bookId;
+      return $http
+        .get(url)
+        .then(function (response) {
+          var data = formatData(response.data);
+          return data;
+        })
+        .catch(function (error) {
+          console.log("Error fetching book:", error);
+          return null;
+        });
+    };
+
+    // Return the factory object
+    return factory;
+  },
+]);
+
+function formatData(list_of_posts) {
+  for (var i = 0; i < list_of_posts.length; i++) {
+    // Format content, ie remove <span> tags
+    var content = list_of_posts[i].post_content;
+    list_of_posts[i].post_content = content
+      .replace("<span>", "")
+      .replace("</span>", "");
+    list_of_posts[i].post_content_preview =
+      list_of_posts[i].post_content.substring(0, 100) + "...";
+
+    // Format data
+    var date = list_of_posts[i].post_date;
+    list_of_posts[i].post_date = date.substring(0, 10);
+
+    // Format url to link to post
+    var post_name = list_of_posts[i].post_name;
+    list_of_posts[i].post_url =
+      "http://localhost/sites/wordpress/?book_collection_post=$" + post_name;
+  }
+  return list_of_posts;
+}
+;// Call the module that was defined in app.js
 angular.module("app")
 
     // Add config to set up routes
