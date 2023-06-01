@@ -2,7 +2,3 @@ bower_components/
 node_modules/
 
 .jshintrc
-
-cypress/
-
-cypress.config.js
