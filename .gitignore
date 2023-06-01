@@ -2,3 +2,6 @@ bower_components/
 node_modules/
 
 .jshintrc
+
+cypress/e2e/xexamples
+
