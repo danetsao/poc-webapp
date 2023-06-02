@@ -85,3 +85,23 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
+
+/* Styling for search item */
+
+/* Search input style */
+input[type="text"] {
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* Search button style */
+.button-search {
+  background-color: #2e3d9a;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

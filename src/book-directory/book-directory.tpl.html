@@ -1,7 +1,14 @@
 <div ng-controller="BookDirController" class="book-directory">
   <div ng-if="books_found">
-    <h2>List of available books:</h2>
-    <div ng-repeat="post in list_of_posts">
+
+    <h2>Search for a book:</h2>
+    <input type="text" ng-model="searchQuery" placeholder="" >
+    <span></span>
+    <button class="button-search" ng-click="searchFilter = {post_title: searchQuery}">Search</button>
+
+    <h2>List of all books:</h2>
+    <div ng-repeat="post in list_of_posts | filter:searchFilter">
+
         <div class="book-container">
 
           <div class="book-card">

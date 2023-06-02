@@ -27,6 +27,18 @@ angular
       // Define list of books in json format
       $scope.list_of_posts = [];
       $scope.books_found = false;
+      $scope.num_posts = 0;
+
+      $scope.searchQuery = "";
+
+      // Custom filter function
+      $scope.searchFilter = function(post) {
+        var query = $scope.searchQuery.toLowerCase();
+    
+        // Check if the book title or author contains the search query
+        return post.post_title.toLowerCase().indexOf(query) !== -1 ||
+               post.post_author.toLowerCase().indexOf(query) !== -1;
+      };
 
       // Get list of books from the book factory and WP API
       $bookFactory.getBooks()
